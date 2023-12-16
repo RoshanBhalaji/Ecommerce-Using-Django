@@ -1,0 +1,57 @@
+{% extends 'shop/layouts/main.html' %}
+{% block title %}
+Collections|| Roshan_kart
+{% endblock title %}
+{% block content %}
+<section class="bg-light py-4 my-5" style="margin-top: 70px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3">Categories</h4>
+                <hr style="border-color: #b8bfc2;">
+                
+                
+            </div>
+        </div>
+
+        <!-- Bestsellers Section -->
+        <div class="row">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fa-light">Bestsellers</h1>
+                <p class="lead text-muted">Our most popular products based on sales. Updated hourly.</p>
+                <p>
+                    <a href="{% url 'login' %}" class="btn btn-primary my-2">Already User</a>
+                    <a href="{% url 'register'%}" class="btn btn-secondary my-2">Register</a>
+                    
+                    
+                </p>
+               
+            </div>
+            <hr style="border-color:#b8bfc2;">
+        </div>
+        
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-md-4 col-lg-3">
+                <div class="card my-3">
+                    <img src="{{ category.image.url }}" class="card-img-top" alt="{{ category.name }} Image">
+                    <div class="card-body">
+                        <a href="{% url 'collections' category.name %}">
+                            <h5 class="card-title">{{ category.name }}</h5>
+                            <p class="card-text">{{ category.description }}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{% endblock content %}
