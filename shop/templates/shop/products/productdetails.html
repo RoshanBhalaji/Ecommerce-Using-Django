@@ -26,31 +26,31 @@
 
             <div class="col-4 mt-3 pic-box">
                 {% if products.trending %}
-                    <div class="trend">
-                        <img src="{% static 'images/1.jpg' %}" alt="Image Description" width="8%" class="trendimg">
+                <div class="trend" style="margin-top: 10px; text-align: center;">
+                        <img src="{% static 'images/1.jpg' %}" alt="Image Description" width="15%" class="trendimg" style="padding-right: 30px;">
                     </div>
                 {% endif %}
                 
-                <img src="{{ products.product_image.url }}" class="card-img-top" alt="{{ products.name }}">
+                <img src="{{ products.product_image.url }}" class="card-img-top img-thumbnail" alt="{{ products.name }}">  
             </div>
             
-            <div class="col-8 my-3">
-                <h5 class="text-success">{{products.name|upper }}</h5>
-                <p>Seller Name :{{products.vendor}}</p>
-                <p> Description: {{products.description}}</p>
-                <h6 class="my-2" style="color: red;">Current Price: <s style="color: red; text-decoration: line-through;">Rs.{{products.original_price |stringformat:'d'}}</s></h6>
-                <h5 class="my-3 text-primary" >Selling Price: Rs.{{products.selling_price |stringformat:'d'}}</h5>
+            <div class="col-8 my-3" style="padding-top: 40px;">
+                <h3>{{ products.name }}</h3>
+                <p>Seller: {{ products.vendor }}</p>
+                <p>Description: {{ products.description }}</p>
+                <h5 class="my-2 text-danger">Current Price: <s>Rs.{{ products.original_price |stringformat:'d' }}</s></h5>
+                <h4 class="my-3 text-primary">Selling Price: Rs.{{ products.selling_price |stringformat:'d' }}</h4>
                 <div class="my-3">
                     {% if products.quantity > 0 %}
-                    <button class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to Cart</button>
+                    <button class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                     {% else %}
-                   <button class="btn btn-secondary" disabled><i class="fa fa-minus"></i> Out of Stock </button>
-
+                    <button class="btn btn-secondary" disabled><i class="fa fa-minus"></i> Out of Stock</button>
                     {% endif %}
-                    <button class="btn btn-danger"> <i class="fa fa-heart"></i> </button>
+                    <button class="btn btn-danger" style="margin-left: 20px;"><i class="fa fa-heart"></i> Add to Favorites</button>
 
-                    
                 </div>
+            </div>
+            
 
             </div>
         </div>

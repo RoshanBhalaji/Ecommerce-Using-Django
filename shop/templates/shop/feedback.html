@@ -1,0 +1,54 @@
+{% extends 'shop/layouts/main.html' %}
+{% block title %}
+Feedback || Roshan_kart
+{% endblock title %}
+{% block content %}
+<div class="container" style="margin-top: 70px;">
+    <div class="row">
+        <div class="col-12">
+            <h3>Feedback</h3>
+            <hr style="border-color:#b8bfc2;">
+            {% include 'shop/inc/messages.html' %}
+        </div>
+        <section class="py-4 my-5 rf">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="id_name" class="form-label">Name</label>
+                                <input type="text" id="id_name" name="name" class="form-control" placeholder="Enter your name">
+                                {% if feedbackform.errors.name %}
+                                    <p class="text-danger">{{ feedbackform.errors.name }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_email" class="form-label">Email</label>
+                                <input type="email" id="id_email" name="email" class="form-control" placeholder="Enter your email">
+                                {% if feedbackform.errors.email %}
+                                    <p class="text-danger">{{ feedbackform.errors.email }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_message" class="form-label">Message</label>
+                                <textarea id="id_message" name="message" class="form-control" rows="4" placeholder="Enter your message"></textarea>
+                                {% if feedbackform.errors.message %}
+                                    <p class="text-danger">{{ feedbackform.errors.message }}</p>
+                                {% endif %}
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="margin-left:36%;">Submit Feedback</button>
+                        </form>
+                        
+
+
+                            
+
+                          
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock content %}
