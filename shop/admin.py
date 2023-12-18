@@ -6,4 +6,6 @@ from .models import *
 admin.site.register(Catagory)
 admin.site.register(Product)
 admin.site.register(Feedback)
+admin.site.register(Cart)
+
 

@@ -1,0 +1,65 @@
+{% extends 'shop/layouts/main.html' %}
+
+{% block title %}
+  {{user}} -Cart
+{% endblock title %}
+
+{% block content %}
+<section class="bg-light py-4 my-5" style="margin-top: 70px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3">{{user.username}} Cart Items</h4>
+                <hr style="border-color: #b8bfc2;">
+            </div>
+            <table class="table table-hover text-center">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Unit</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart %}
+                    <tr class="text-center">
+                        <td><img src="{{ item.product.product_image.url }}" height="75px"></td>
+                        <td>{{ item.product.name }}</td>
+                        <td>{{ item.product.selling_price | stringformat:'d'  }}</td>
+                        <td>{{ item.product_qty }}</td>
+                        <td class="amt">{{ item.total_cost | stringformat:'d' }}</td>
+
+                        <td><a href="{% url 'remove_cart' item.id %}" class="btn btn-danger text-center sm" style="margin-top:5px;" onclick="return confirm('Are you Sure ? To Remove')"><i class="fa fa-trash"></i> Remove</a></td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="3"></td>
+                        <td  ><b>Total Amount</b></td>
+                        <td id="net"  >0</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-success text-center" onclick="return write" style="width: 120px; margin-left:45%; border-radius:27px;"> CheckOut</button>
+        </div>
+    </div>
+</section>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Calculate total amount when the document loads
+        calculateTotalAmount();
+
+        function calculateTotalAmount() {
+            let total = 0;
+            const amounts = document.querySelectorAll('.amt');
+            amounts.forEach((amount) => {
+                total += parseInt(amount.textContent);
+            });
+
+            document.getElementById('net').innerHTML = "Rs."+total;
+        }});
+</script>
+{% endblock content %}
